@@ -1,0 +1,217 @@
+body{
+  background: var(--body-bg);
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center; 
+  padding-top: 270px;
+}
+
+:root{
+  --body-bg: linear-gradient(rgb(184, 227, 255), 70%, rgb(255, 226, 231));
+  --portada-bg:rgb(255, 255, 255);
+  --menu-bg: rgba(255, 255, 255, 0.699);
+  --menu-color: rgb(10, 51, 70);
+  --h1-color: rgb(10, 51, 70);
+  --h2-color: rgb(35, 96, 124);
+  --p-color: rgb(0, 0, 0);
+  --box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  --color-icon: rgb(10, 51, 70);
+  --icon-color-hover: rgb(255, 255, 255);
+  --icon-github-bg-hover: rgb(57 13 66);
+  --icon-mail-bg-hover: rgb(104, 19, 19);
+  --icon-linkedin-bg-hover: rgb(16, 39, 88);
+  --icon-cv-bg-hover: rgb(13, 59, 20);
+  --tooltip-cv-bg: rgb(221, 221, 221);
+  --tooltip-cv-color: rgb(46, 46, 46);
+}
+
+@media (prefers-color-scheme: dark){
+  :root {
+    --body-bg: linear-gradient(rgb(17, 17, 17), 70%, rgb(39, 4, 53));
+    --portada-bg:rgb(22, 22, 22);
+    --menu-bg: rgba(54, 54, 54, 0.699);
+    --menu-color: rgb(255, 255, 255);
+    --h1-color: rgb(255, 255, 255);
+    --h2-color: rgb(213, 107, 255);
+    --p-color: rgb(255, 255, 255);
+    --box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    --color-icon: rgb(255, 255, 255);
+    --icon-color-hover: rgb(255, 255, 255);
+    --icon-github-bg-hover: rgb(57 13 66);
+    --icon-mail-bg-hover: rgb(104, 19, 19);
+    --icon-linkedin-bg-hover: rgb(16, 39, 88);
+    --icon-cv-bg-hover: rgb(13, 59, 20);
+    --tooltip-cv-bg: rgb(221, 221, 221);
+    --tooltip-cv-color: rgb(46, 46, 46);
+  }
+}
+
+body.dark-mode {
+  --body-bg: linear-gradient(rgb(17, 17, 17), 70%, rgb(39, 4, 53));
+  --portada-bg:rgb(22, 22, 22);
+  --menu-bg: rgba(54, 54, 54, 0.699);
+  --menu-color: rgb(255, 255, 255);
+  --h1-color: rgb(255, 255, 255);
+  --h2-color: rgb(213, 107, 255);
+  --p-color: rgb(255, 255, 255);
+  --box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+  --color-icon: rgb(255, 255, 255);
+  --icon-color-hover: rgb(255, 255, 255);
+  --icon-github-bg-hover: rgb(57 13 66);
+  --icon-mail-bg-hover: rgb(104, 19, 19);
+  --icon-linkedin-bg-hover: rgb(16, 39, 88);
+  --icon-cv-bg-hover: rgb(13, 59, 20);
+  --tooltip-cv-bg: rgb(221, 221, 221);
+  --tooltip-cv-color: rgb(46, 46, 46);
+}
+
+header {
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  z-index: 1000; 
+  height: 60px;
+  background-color: var(--menu-bg); 
+  padding: 5px 0;
+  text-align: center;
+  justify-content: center;
+  box-shadow: var(--box-shadow);
+}
+
+header nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+header nav ul li a {
+  color: var(--menu-color);
+  text-decoration: none;
+  border: ;
+}
+
+#boton-tema{
+  padding: 5px 10px;
+  border: 1px solid var(--menu-color);
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--menu-color);
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#boton-tema:hover{
+  background-color: var(--menu-color);
+   color: var(--menu-bg);
+}
+
+h1{
+  font-size: 40px;
+  color: var(--h1-color);
+  margin: 0;
+  margin-top: 10px;
+}
+
+h2{
+  font-size: 25px;
+  color: var(--h2-color);
+}
+
+#contenido-portada{
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  border: 2px solid var(--h2-color);
+  border-radius: 20px;
+  background-color: var(--portada-bg);
+  box-shadow: var(--box-shadow);
+}
+
+img{
+  max-width: 230px;
+  border: 1px solid var(--h2-color);
+  border-radius: 20px;
+}
+
+p{
+  color: var(--p-color);
+  max-width: 370px;
+  font-size: 17px;
+  margin: 0%;
+}
+
+section ul{
+  display: flex;
+  list-style: none;
+  margin-left: -4%;
+  padding: 0%;
+}
+
+.iconos-portada {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%;
+  color: var(--color-icon);
+  text-decoration: none;
+  margin: 5px;
+  margin-left: 8px;
+  transition: background-color 0.5s, color 0.5s, transform 0.5s;
+  transform: scale(1);
+}
+
+.iconos-portada svg {
+  width: 24px; 
+  height: 24px;
+}
+
+.icono-github:hover {
+  background-color: var(--icon-github-bg-hover);
+  color: var(--icon-color-hover); 
+  transform: scale(1.1);
+}
+
+.icono-mail:hover {
+  background-color: var(--icon-mail-bg-hover);
+  color: var(--icon-color-hover); 
+  transform: scale(1.1);
+}
+
+.icono-linkedin:hover{
+  background-color: var(--icon-linkedin-bg-hover);
+  color: var(--icon-color-hover); 
+  transform: scale(1.1);
+}
+
+.icono-cv:hover{
+  background-color: var(--icon-cv-bg-hover);
+  color: var(--icon-color-hover); 
+  transform: scale(1.1);
+}
+
+.icono-cv::after {
+    content: attr(data-tooltip);
+    
+    position: absolute;
+    bottom: calc(-30px + -10px); 
+    left: 50%;
+    background-color: var(--tooltip-cv-bg);
+    color: var(--tooltip-cv-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+    white-space: nowrap;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.2s, transform 0.5s;
+    transform: translateX(-50%) translateY(5px);
+    z-index: 999;
+}
+
+.icono-cv:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); 
+}
