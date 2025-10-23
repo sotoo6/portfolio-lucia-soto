@@ -1,3 +1,8 @@
+html{
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable; 
+}
+
 body{
   background: var(--body-bg);
   background-attachment: fixed;
@@ -63,8 +68,8 @@ body.dark-mode {
   --icon-mail-bg-hover: rgb(104, 19, 19);
   --icon-linkedin-bg-hover: rgb(16, 39, 88);
   --icon-cv-bg-hover: rgb(13, 59, 20);
-  --tooltip-cv-bg: rgb(221, 221, 221);
-  --tooltip-cv-color: rgb(46, 46, 46);
+  --tooltip-cv-bg: rgb(46, 46, 46);
+  --tooltip-cv-color: rgb(221, 221, 221);
 }
 
 header {
@@ -120,6 +125,7 @@ h2{
 }
 
 #contenido-portada{
+  position: relative;
   width: 700px;
   display: flex;
   justify-content: space-between;
@@ -130,8 +136,14 @@ h2{
   box-shadow: var(--box-shadow);
 }
 
+#texto-portada{
+  min-width: 300px;
+  margin-right: 20px;
+}
+
 img{
   max-width: 230px;
+  max-height: 309px;
   border: 1px solid var(--h2-color);
   border-radius: 20px;
 }
@@ -217,4 +229,74 @@ section ul{
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0); 
+}
+
+
+
+
+
+
+/* Contenedor de las flechas */
+.scroll-down {
+  position: absolute;
+  left: 50%;
+  bottom: 15px; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  z-index: 200;
+}
+
+/* Cada chevron */
+.chev {
+  width: 52px;   /* ancho total */
+  height: 24px;  /* alto del espacio */
+  position: relative;
+}
+
+/* Barras que forman la V */
+.chev::before,
+.chev::after {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 10px;
+  background: var(--h2-color); 
+  border-radius: 10px;
+  transform-origin: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* ahora apuntan hacia abajo */
+.chev::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.chev::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Animación descendente */
+@keyframes chevMove {
+  0%   { transform: translateY(0); opacity: 0; }
+  20%  { opacity: 1; }
+  60%  { transform: translateY(10px); opacity: 1; }
+  100% { transform: translateY(20px); opacity: 0; }
+}
+
+.scroll-down .chev {
+  animation: chevMove 1.5s infinite ease-in-out;
+}
+.scroll-down .chev:nth-child(1) { 
+  animation-delay: 0s; 
+}
+.scroll-down .chev:nth-child(2) {
+   animation-delay: 0.18s; 
+  }
+.scroll-down .chev:nth-child(3) { 
+  animation-delay: 0.36s; 
+}
+
+.scroll-down:hover .chev {
+  transform: translateY(-2px);
 }
