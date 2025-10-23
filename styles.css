@@ -6,17 +6,16 @@ html{
 body{
   background: var(--body-bg);
   background-attachment: fixed;
-  display: flex;
-  justify-content: center; 
   padding-top: 270px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
 }
 
 :root{
-  --body-bg: linear-gradient(rgb(184, 227, 255), 70%, rgb(255, 226, 231));
+  --body-bg: linear-gradient(rgb(184, 227, 255), 70%, rgb(255, 217, 247));
+  --mouse-follower: radial-gradient(circle, rgba(99, 206, 255, 0.226) 0%, rgba(87, 202, 255, 0) 70%);
   --portada-bg:rgb(255, 255, 255);
-  --menu-bg: rgba(255, 255, 255, 0.699);
+  --menu-bg: rgba(255, 253, 253, 0.699);
   --menu-color: rgb(10, 51, 70);
   --h1-color: rgb(10, 51, 70);
   --h2-color: rgb(35, 96, 124);
@@ -35,6 +34,7 @@ body{
 @media (prefers-color-scheme: dark){
   :root {
     --body-bg: linear-gradient(rgb(17, 17, 17), 70%, rgb(39, 4, 53));
+    --mouse-follower: radial-gradient(circle, rgba(111, 45, 128, 0.2) 0%, rgba(100, 200, 255, 0) 70%);
     --portada-bg:rgb(22, 22, 22);
     --menu-bg: rgba(54, 54, 54, 0.699);
     --menu-color: rgb(255, 255, 255);
@@ -55,8 +55,9 @@ body{
 
 body.dark-mode {
   --body-bg: linear-gradient(rgb(17, 17, 17), 70%, rgb(39, 4, 53));
+  --mouse-follower: radial-gradient(circle, rgba(111, 45, 128, 0.2) 0%, rgba(100, 200, 255, 0) 70%);
   --portada-bg:rgb(22, 22, 22);
-  --menu-bg: rgba(54, 54, 54, 0.699);
+  --menu-bg: rgba(29, 29, 29, 0.6);
   --menu-color: rgb(255, 255, 255);
   --h1-color: rgb(255, 255, 255);
   --h2-color: rgb(213, 107, 255);
@@ -72,6 +73,26 @@ body.dark-mode {
   --tooltip-cv-color: rgb(221, 221, 221);
 }
 
+#cursor-follower {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: var(--mouse-follower); 
+    filter: blur(20px); 
+    transition: none;
+    opacity: 0; 
+    transform: translate(-50%, -50%);
+}
+
+body.dark-mode #cursor-follower {
+    background: var(--mouse-follower);
+    filter: blur(30px); 
+}
+
 header {
   position: fixed; 
   top: 0; 
@@ -79,6 +100,9 @@ header {
   z-index: 1000; 
   height: 60px;
   background-color: var(--menu-bg); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--menu-border, rgba(255, 255, 255, 0.08));
   padding: 5px 0;
   font-weight: bold;
   text-align: center;
@@ -96,7 +120,6 @@ header nav ul li a {
   color: var(--menu-color);
   text-decoration: none;
 }
-
 
 #boton-tema{
   padding: 5px 10px;
@@ -124,6 +147,7 @@ h2{
   color: var(--h2-color);
 }
 
+
 #contenido-portada{
   position: relative;
   width: 700px;
@@ -132,6 +156,9 @@ h2{
   padding: 30px;
   border: 2px solid var(--h2-color);
   border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 400px;
   background-color: var(--portada-bg);
   box-shadow: var(--box-shadow);
 }
@@ -236,67 +263,36 @@ section ul{
 
 
 
-/* Contenedor de las flechas */
-.scroll-down {
-  position: absolute;
-  left: 50%;
-  bottom: 15px; 
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  z-index: 200;
+
+
+#contenido-pagina{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1150px;
 }
 
-/* Cada chevron */
-.chev {
-  width: 52px;   /* ancho total */
-  height: 24px;  /* alto del espacio */
-  position: relative;
+#menu-lateral{
+  justify-content: start;
 }
 
-/* Barras que forman la V */
-.chev::before,
-.chev::after {
-  content: "";
-  position: absolute;
-  width: 60%;
-  height: 10px;
-  background: var(--h2-color); 
-  border-radius: 10px;
-  transform-origin: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+ol{
+  
+  list-style: none;
 }
 
-/* ahora apuntan hacia abajo */
-.chev::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-.chev::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
+ol li{
+  margin-bottom: 15px;
 }
 
-/* Animación descendente */
-@keyframes chevMove {
-  0%   { transform: translateY(0); opacity: 0; }
-  20%  { opacity: 1; }
-  60%  { transform: translateY(10px); opacity: 1; }
-  100% { transform: translateY(20px); opacity: 0; }
+ol li a{
+  color: var(--p-color);
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.scroll-down .chev {
-  animation: chevMove 1.5s infinite ease-in-out;
-}
-.scroll-down .chev:nth-child(1) { 
-  animation-delay: 0s; 
-}
-.scroll-down .chev:nth-child(2) {
-   animation-delay: 0.18s; 
-  }
-.scroll-down .chev:nth-child(3) { 
-  animation-delay: 0.36s; 
-}
-
-.scroll-down:hover .chev {
-  transform: translateY(-2px);
+ol li::before{
+  content: "--- ";
+  color: var(--p-color);
 }
