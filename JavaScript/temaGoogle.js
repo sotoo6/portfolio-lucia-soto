@@ -1,57 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Usamos 'boton-tema' que es el ID que pusiste en tu HTML
     const toggleButton = document.getElementById('boton-tema');
     const body = document.body;
 
     const setMode = (mode) => {
-        // 1. Limpia las clases para empezar limpio (solo necesitamos dark-mode por ahora)
-        body.classList.remove('dark-mode'); 
-        
-        // 2. Aplica la clase, si es 'dark'
+        // 1. Aplicar/Quitar la clase CSS
         if (mode === 'dark') {
             body.classList.add('dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+        }
+
+        // 2. Guardar la preferencia del usuario
+        localStorage.setItem('theme', mode);
+
+        // 3. Establecer el texto del botón
+        // Si el modo aplicado es 'dark', el botón debe ofrecer cambiar a 'light'.
+        if (mode === 'dark') {
             toggleButton.textContent = 'Modo Claro ☀️';
         } else {
-             // Si mode es 'light' o 'system', no aplicamos la clase dark-mode.
-             // El CSS con @media gestionará el tema si el usuario no ha forzado 'light'.
-             
-             // Determinar el texto del botón basado en el tema actual
-             // Si el sistema es oscuro Y el usuario no ha forzado un modo:
-             const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-             const isForcedLight = (localStorage.getItem('theme') === 'light');
-             
-             // Si actualmente estamos en oscuro (por sistema o por forzado), mostrar 'Modo Claro'
-             if (systemDark && !isForcedLight) {
-                toggleButton.textContent = 'Modo Claro ☀️';
-             } else {
-                 toggleButton.textContent = 'Modo Oscuro 🌓';
-             }
+            toggleButton.textContent = 'Modo Oscuro 🌓';
         }
     };
 
-    // --- 1. Inicialización: Cargar la preferencia del usuario ---
-    let currentTheme = localStorage.getItem('theme');
+    const initializeTheme = () => {
+        let savedTheme = localStorage.getItem('theme');
+        let systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (currentTheme) {
-        // Si hay una preferencia guardada (dark o light), la aplica.
-        setMode(currentTheme);
-    } else {
-        // Si no hay preferencia guardada, el CSS con @media gestiona el tema inicial.
-        // Solo necesitamos que el botón muestre el texto correcto.
-        setMode('system'); 
-    }
+        if (savedTheme) {
+            // Si el usuario ya eligió, se aplica esa elección
+            setMode(savedTheme);
+        } else if (systemPrefersDark) {
+            // Si no eligió y el sistema es oscuro, se aplica 'dark' (y se guarda)
+            setMode('dark');
+        } else {
+            // Si no eligió y el sistema es claro, se aplica 'light' (y se guarda)
+            setMode('light');
+        }
+    };
 
-    // --- 2. Evento de Clic: Cambiar y Guardar la preferencia ---
+    // --- 1. Inicialización: Cargar el tema al inicio ---
+    initializeTheme();
+
+    // --- 2. Evento de Clic: Alternar modo ---
     toggleButton.addEventListener('click', () => {
-        // Comprobar el estado actual: ¿Es oscuro ahora?
-        const isCurrentlyDark = body.classList.contains('dark-mode') || 
-                                (localStorage.getItem('theme') === null && window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-        // El nuevo modo será el opuesto
-        const newMode = isCurrentlyDark ? 'light' : 'dark';
+        // Leemos el modo actual (que ya debería ser el que está en localStorage)
+        let currentMode = localStorage.getItem('theme');
         
-        // Aplicar la nueva clase y guardar en localStorage
+        // El nuevo modo será el opuesto
+        const newMode = currentMode === 'dark' ? 'light' : 'dark';
+        
+        // Aplicar y guardar el nuevo modo
         setMode(newMode);
-        localStorage.setItem('theme', newMode);
+    });
+    
+    // Opcional: Escuchar los cambios en la preferencia del sistema
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Si el usuario no ha forzado un tema, se aplica el nuevo tema del sistema
+        if (localStorage.getItem('theme') === null) {
+            const newMode = e.matches ? 'dark' : 'light';
+            setMode(newMode);
+        }
     });
 });
