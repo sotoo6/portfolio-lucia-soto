@@ -7,20 +7,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script src="JavaScript/temaGoogle.js"></script>
-    <script src="JavaScript/mouseTracker.js"></script>
     <div id="cursor-follower"></div>
     <header>
-        <nav>
-            <ul>
-                <li>Lucía Soto Sánchez</li>
-                <li><a href="#contenido-portada">Inicio</a></li>
-                <li><a href="">Experiencia</a></li>
-                <li><a href="">Sobre Mi</a></li>
-                <li><button id="boton-tema" class="dark-mode">Cambiar tema</button></li>
-            </ul>
-        </nav>
-    </header>
+    <nav>
+        <ul>
+            <li>Lucía Soto Sánchez</li>
+            <li><a href="#contenido-portada">Inicio</a></li>
+            <li><a href="">Experiencia</a></li>
+            <li><a href="">Sobre Mi</a></li>
+            <li><button id="boton-tema" class="dark-mode">Cambiar tema</button></li>
+        </ul>
+    </nav>
+
+    <!-- Botón hamburguesa (solo visible en móvil) -->
+    <button id="hamburguesa">&#9776;</button>
+
+    <!-- Menú móvil desplegable -->
+    <div id="menu-movil" class="menu-movil-oculto">
+        <a href="#contenido-portada">Inicio</a>
+        <a href="">Experiencia</a>
+        <a href="">Sobre Mi</a>
+        <button id="boton-tema-movil" class="dark-mode">Cambiar tema</button>
+    </div>
+</header>
 
     <div id="portada">
         <div id="contenido-portada">
@@ -85,5 +94,8 @@
         </div>
     </div>
     
+    <script src="JavaScript/temaGoogle.js"></script>
+    <script src="JavaScript/mouseTracker.js"></script>
+    <script src="JavaScript/menuHamburguesa.js"></script>
 </body>
 </html>

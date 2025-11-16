@@ -6,7 +6,7 @@ html{
 body{
   background: var(--body-bg);
   background-attachment: fixed;
-  padding-top: 270px;
+  padding-top: 7em;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
 }
@@ -79,8 +79,8 @@ body.dark-mode {
     pointer-events: none;
     top: 0;
     left: 0;
-    width: 300px;
-    height: 300px;
+    width: 18.75em;
+    height: 18.75em;
     border-radius: 50%;
     background: var(--mouse-follower); 
     filter: blur(20px); 
@@ -97,14 +97,15 @@ body.dark-mode #cursor-follower {
 header {
   position: fixed; 
   top: 0; 
+  left: 0;
   width: 100%; 
   z-index: 1000; 
-  height: 60px;
+  height: 3.75em;
   background-color: var(--menu-bg); 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--menu-border, rgba(255, 255, 255, 0.08));
-  padding: 5px 0;
+  padding: 0.3125em 0;
   font-weight: bold;
   text-align: center;
   justify-content: center;
@@ -114,7 +115,7 @@ header {
 header nav ul li {
   color: var(--menu-color);
   display: inline;
-  margin-right: 20px;
+  margin-right: 1.25em;
 }
 
 header nav ul li a {
@@ -122,10 +123,59 @@ header nav ul li a {
   text-decoration: none;
 }
 
+/* BOTÓN HAMBURGUESA (oculto en PC) */
+#hamburguesa {
+    display: none; /* se activa en responsive */
+    background: transparent;
+    border: none;
+    font-size: 2em;
+    color: var(--menu-color);
+    cursor: pointer;
+    position: absolute;
+    right: 1em;
+    top: 0.3em;
+    z-index: 1100;
+}
+
+/* MENÚ MÓVIL DESPLEGABLE */
+#menu-movil {
+    position: absolute;
+    top: 3.75em; /* justo debajo del header */
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: var(--menu-bg);
+    padding: 1.5em 0;
+    display: flex;               /* visible por defecto */
+    flex-direction: column;
+    gap: 1.2em;
+    align-items: center;
+    border-bottom: 1px solid var(--menu-color);
+}
+
+#menu-movil a {
+    color: var(--menu-color);
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+#menu-movil button {
+    padding: 0.6em 1em;
+    border: 1px solid var(--menu-color);
+    border-radius: 0.5em;
+    background: transparent;
+    color: var(--menu-color);
+}
+
+/* clase para ocultarlo */
+.menu-movil-oculto {
+    display: none !important;
+}
+
 #boton-tema{
-  padding: 5px 10px;
+  padding: 0.3125em 0.625em;
   border: 1px solid var(--menu-color);
-  border-radius: 5px;
+  border-radius: 0.3125em;
   background-color: transparent;
   color: var(--menu-color);
   transition: background-color 0.3s, color 0.3s;
@@ -137,53 +187,53 @@ header nav ul li a {
 }
 
 h1{
-  font-size: 40px;
+  font-size: 2.5em;
   font-family: var(--titles-font);
-  letter-spacing: 2px;
+  letter-spacing: 0.125em;
   color: var(--h1-color);
   margin: 0;
-  margin-top: 10px;
+  margin-top: 0.625em;
 }
 
 h2{
-  font-size: 25px;
+  font-size: 1.5625em;
   font-family: var(--titles-font);
-  letter-spacing: 2px;
+  letter-spacing: 0.125em;
   color: var(--h2-color);
 }
 
 
 #contenido-portada{
   position: relative;
-  width: 700px;
+  width: 43.75em;
   display: flex;
   justify-content: space-between;
-  padding: 30px;
+  padding: 1.875em;
   border: 2px solid var(--h2-color);
-  border-radius: 20px;
+  border-radius: 1.25em;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 400px;
+  margin-bottom: 5em;
   background-color: var(--portada-bg);
   box-shadow: var(--box-shadow);
 }
 
 #texto-portada{
-  min-width: 300px;
-  margin-right: 20px;
+  min-width: 18.75em;
+  margin-right: 1.25em;
 }
 
 img{
-  max-width: 230px;
-  max-height: 309px;
+  max-width: 14.375em;
+  max-height: 19.3125em;
   border: 1px solid var(--h2-color);
-  border-radius: 20px;
+  border-radius: 1.25em;
 }
 
 p{
   color: var(--p-color);
-  max-width: 370px;
-  font-size: 17px;
+  max-width: 23.125em;
+  font-size: 1.0625em;
   margin: 0%;
 }
 
@@ -210,8 +260,8 @@ section ul{
 }
 
 .iconos-portada svg {
-  width: 24px; 
-  height: 24px;
+  width: 1.5em; 
+  height: 1.5em;
 }
 
 .icono-github:hover {
@@ -242,13 +292,13 @@ section ul{
     content: attr(data-tooltip);
     
     position: absolute;
-    bottom: calc(-30px + -10px); 
+    bottom: calc(-1.875em + -0.625em); 
     left: 50%;
     background-color: var(--tooltip-cv-bg);
     color: var(--tooltip-cv-color);
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 0.5em 0.75em;
+    border-radius: 0.375em;
+    font-size: 0.875em;
     text-align: center;
     white-space: nowrap;
     visibility: hidden;
@@ -317,4 +367,156 @@ h3{
   border-bottom: solid 1px var(--h3-border);
   color: var(--h3-color);
   padding: 15px;
+}
+
+/* RESPONSIVE */
+
+/* Tablets */
+@media (max-width: 1024px) {
+
+    body {
+        padding-top: 6em; /* menos hueco arriba */
+    }
+
+    #contenido-portada {
+        width: 90%;
+        padding: 2em;
+        margin-bottom: 8em;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #texto-portada p {
+        max-width: 100%;
+    }
+
+    img {
+        max-width: 180px;
+        max-height: auto;
+    }
+
+    #contenido-pagina {
+        grid-template-columns: 1fr;
+        margin-top: 4em;
+    }
+
+    #contenido-lateral {
+        margin-top: 2em;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+
+    /* Ajuste de espacio superior */
+    body { 
+        padding-top: 5.5em; 
+    }
+
+    /* Ocultar menú horizontal */
+    header nav ul {
+        display: none;
+    }
+
+    /* Mostrar botón hamburguesa */
+    #hamburguesa {
+        display: block;
+        background: transparent;
+        border: none;
+        font-size: 2em;
+        color: var(--menu-color);
+        cursor: pointer;
+        position: absolute;
+        right: 1em;
+        top: 0.25em;
+        z-index: 1100;
+    }
+
+    /* El menú móvil NO se toca aquí.
+       Su display se controla SOLO con la clase .menu-movil-oculto 
+       y el JS lo abrirá/cerrará. */
+
+    /* Ajustes de la portada */
+    #contenido-portada {
+        width: 95%;
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5em;
+        gap: 1.5em;
+        margin-bottom: 3em;
+    }
+
+    #texto-portada {
+        margin-right: 0;
+    }
+
+    img {
+        max-width: 150px;
+        border-radius: 1em;
+    }
+
+    section ul {
+        justify-content: center;
+        margin-left: 0;
+        flex-wrap: wrap;
+    }
+
+    p {
+        max-width: 100%;
+        font-size: 1em;
+    }
+
+    #contenido-pagina {
+        width: 90%;
+    }
+}
+
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+
+    body {
+        padding-top: 5em;
+    }
+
+    header {
+        height: auto;
+        padding: 0.5em 0;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-top: 0.3em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    #contenido-portada {
+        padding: 1.2em;
+        gap: 1em;
+    }
+
+    img {
+        max-width: 130px;
+    }
+
+    .iconos-portada {
+        padding: 0.45em;
+    }
+
+    .iconos-portada svg {
+        width: 1.2em;
+        height: 1.2em;
+    }
+
+    #contenido-pagina {
+        margin-top: 3em;
+    }
+
+    h3 {
+        font-size: 1.1em;
+        padding: 10px;
+    }
 }
